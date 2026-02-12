@@ -8,7 +8,7 @@ export default function DashLayout() {
     <SidebarProvider defaultOpen={false}>
       <div>
         <DashSidebar />
-        <main className="py-6">
+        <main>
           <SidebarTrigger className="bg-secondary size-10 fixed top-20 right-4 z-50" />
           <Outlet />
         </main>
