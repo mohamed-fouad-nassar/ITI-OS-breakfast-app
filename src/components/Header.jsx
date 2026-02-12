@@ -6,6 +6,7 @@ import {
 import { Link, useLocation } from "react-router";
 
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header({ navigationData }) {
   let { pathname } = useLocation();
@@ -31,6 +32,10 @@ export default function Header({ navigationData }) {
             ))}
           </NavigationMenuList>
         </NavigationMenu>
+
+        <div className="max-md:hidden">
+          <ThemeToggle />
+        </div>
       </div>
       <div className="via-primary/20 mx-auto h-px w-4/5 bg-linear-to-r from-transparent to-transparent"></div>
     </header>

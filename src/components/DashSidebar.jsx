@@ -22,7 +22,7 @@ export default function DashSidebar() {
         <h2 className="mb-5 font-semibold text-xl text-center">Dashboard</h2>
         <nav className="flex flex-col gap-2.5">
           {dashLinks.map(({ title, href }) => (
-            <Button asChild variant="ghost">
+            <Button key={href} asChild variant="ghost">
               <Link to={href}>{title}</Link>
             </Button>
           ))}
