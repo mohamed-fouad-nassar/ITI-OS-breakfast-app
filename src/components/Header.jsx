@@ -1,12 +1,21 @@
+import { MenuIcon } from "lucide-react";
+import { Link, useLocation } from "react-router";
+
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+} from "./ui/dropdown-menu";
+import { Button } from "./ui/button";
+import ThemeToggle from "./ThemeToggle";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { Link, useLocation } from "react-router";
 
 import Logo from "./Logo";
-import ThemeToggle from "./ThemeToggle";
 
 export default function Header({ navigationData }) {
   let { pathname } = useLocation();
@@ -35,6 +44,34 @@ export default function Header({ navigationData }) {
 
         <div className="max-md:hidden">
           <ThemeToggle />
+        </div>
+
+        <div className="flex gap-4 md:hidden">
+          <ThemeToggle />
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="icon">
+                <MenuIcon />
+                <span className="sr-only">Menu</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56" align="end">
+              {navigationData.map(({ title, href }) => (
+                <DropdownMenuItem asChild key={`mobile-${href}`}>
+                  <Link
+                    to={href}
+                    className={`hover:text-primary text-base! font-medium hover:bg-transparent ${
+                      pathname === href
+                        ? "text-primary"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    {title}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
       <div className="via-primary/20 mx-auto h-px w-4/5 bg-linear-to-r from-transparent to-transparent"></div>
